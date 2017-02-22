@@ -1,7 +1,4 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Questions</h1>
-
 <table>
   <thead>
     <tr>
@@ -15,6 +12,7 @@
   </thead>
 
   <tbody>
+ 
     <% @questions.each do |question| %>
       <tr>
         <td><%= question.question %></td>
@@ -27,8 +25,12 @@
         <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+
   </tbody>
 </table>
+<div class= "div_paginate">
+<%= will_paginate @questions, :class => 'apple_pagination' %>
+</div>
 
 <br>
 
