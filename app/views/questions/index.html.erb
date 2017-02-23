@@ -1,33 +1,22 @@
 <p id="notice"><%= notice %></p>
-<table>
-  <thead>
-    <tr>
-      <th>Question</th>
-      <th>Answer</th>
-      <th>Distractor1</th>
-      <th>Distractor2</th>
-      <th>Distractor3</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
- 
+<div id = "app">
+<h2>Questions</h2>
+<div class="questions">
     <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.question %></td>
-        <td><%= question.answer %></td>
-        <td><%= question.distractor1 %></td>
-        <td><%= question.distractor2 %></td>
-        <td><%= question.distractor3 %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class= "question"> <h4><%= question.question %> </h4>
+        <div class="answers"> 
+          <button class= "answer" data-true="true"><%= question.answer %></button>
+          <button class= "answer" data-true="false"><%= question.distractor1 %></button>
+          <% if question.distractor2? %>
+          <button class= "answer" data-true="false"> <%=question.distractor2 %></button>
+          <% end %>
+          <% if question.distractor3? %>
+          <button class= "answer" data-true="false"><%= question.distractor3 %></button>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-
-  </tbody>
-</table>
+</div>
 <div class= "div_paginate">
 <%= will_paginate @questions, :class => 'apple_pagination' %>
 </div>
@@ -35,3 +24,4 @@
 <br>
 
 <%= link_to 'New Question', new_question_path %>
+</div>
