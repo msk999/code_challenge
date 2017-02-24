@@ -2,6 +2,7 @@ class Question < ApplicationRecord
 
     enum operators: [:Addition, :Subtraction, :Multiplication, :Division]
     
+    validates_format_of :question, with: /\A^\s*-?\d+(?:\s*[-+*\/]\s*\d+)\z/, :message => "Wrong format" 
     validates :answer, numericality: true
     validates :distractor1, numericality: true
     validates :distractor2, numericality: true , allow_nil: true, allow_blank: true

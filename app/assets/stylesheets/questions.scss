@@ -18,6 +18,10 @@
     margin-left:0.5em;
     }
 
+    .float_right {
+      padding: 1.75em 1.25em;
+      float: right;
+    }
 }
 
 .questions {
@@ -26,6 +30,15 @@
       border:1px solid #666;
       padding: 0.10em 1em 1em 1em;
       margin-top:0.5em;
+      &:hover {
+        background-color: lightblue;
+        a {
+          visibility: visible ;
+        } 
+      }
+    a {
+      visibility: hidden ;
+    }
     button {
       color: #fff;
       background:#00BFFF;
@@ -55,3 +68,4 @@
  
   }
 }
+

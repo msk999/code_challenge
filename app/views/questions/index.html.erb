@@ -1,14 +1,47 @@
 <p id="notice"><%= notice %></p>
+
 <%= form_tag "/questions", method: :get do%>
-<%= text_field_tag :answer, params[:answer], placeholder: "Answer" %>
-<%=  select_tag :operation, options_for_select(Question.operators.to_a , params[:operator]), include_blank: "Question Type" %>
-<%= submit_tag "Search" %>
+<div class="container">
+	<div class="row">
+        <div class="col-md-8 pull-right">
+            <div id="custom-search-input">
+                <div class="input-group col-md-6">
+                  <%= text_field_tag :answer, params[:answer], class: "form-control input-lg", placeholder: "Search for Answer" %>
+                  <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                  </span>
+                   
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
 <% end -%>
+
 <div id = "app">
+  <%= link_to 'New Question', new_question_path, class: "float_right" %> 
+  <div class= "div_paginate">
+  <%= will_paginate @questions, :class => 'apple_pagination' %>
+  </div>
+
 <h2>Questions</h2>
+
+
 <div class="questions">
+    <div class="problem">
+    
     <% @questions.each do |question| %>
       <div class= "question"> <h4><%= question.question %> </h4>
+        <a href="#" class = "float_right">
+            <span class="glyphicon glyphicon-trash"></span>
+        </a>
+
+        <a href="#" class = "float_right">
+            <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+
         <div class="answers"> 
           <button class= "answer" data-true="true"><%= question.answer %></button>
           <button class= "answer" data-true="false"><%= question.distractor1 %></button>
@@ -21,12 +54,14 @@
         </div>
       </div>
     <% end %>
+    </div>
+
 </div>
+ 
 <div class= "div_paginate">
 <%= will_paginate @questions, :class => 'apple_pagination' %>
 </div>
 
 <br>
 
-<%= link_to 'New Question', new_question_path %>
-</div>
+
