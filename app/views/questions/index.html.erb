@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
+<%= form_tag "/questions", method: :get do%>
+<%= text_field_tag :answer, params[:answer], placeholder: "Answer" %>
+<%=  select_tag :operation, options_for_select(Question.operators.to_a , params[:operator]), include_blank: "Question Type" %>
+<%= submit_tag "Search" %>
+<% end -%>
 <div id = "app">
 <h2>Questions</h2>
 <div class="questions">

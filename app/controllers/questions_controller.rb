@@ -6,7 +6,11 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.paginate(:page => params[:page], per_page: 15)
+    @questions =  Question.where(nil).paginate(:page => params[:page], per_page: 15)
+    @questions =  Question.where_answer(params[:answer]).paginate(:page => params[:page], per_page: 15) if params[:answer].present?
+
+    @questions =  Question.where_operator(params[:operator]) if params[:operator].present?
+
   end
 
   # GET /questions/1
