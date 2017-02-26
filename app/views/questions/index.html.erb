@@ -34,13 +34,14 @@
     
     <% @questions.each do |question| %>
       <div class= "question"> <h4><%= question.question %> </h4>
-        <a href="#" class = "float_right">
-            <span class="glyphicon glyphicon-trash"></span>
-        </a>
+     
+      <%= link_to question_path(question.id, page: params[:page]), class: "float_right", method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <span class="glyphicon glyphicon-trash"></span>
+        <% end %>
 
-        <a href="#" class = "float_right">
+        <%= link_to  edit_question_path(question.id), class: "float_right" do%>
             <span class="glyphicon glyphicon-pencil"></span>
-        </a>
+            <% end %>
 
         <div class="answers"> 
           <button class= "answer" data-true="true"><%= question.answer %></button>

@@ -6,8 +6,8 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions =  Question.where(nil).paginate(:page => params[:page], per_page: 15)
-    @questions =  Question.where_answer(params[:answer]).paginate(:page => params[:page], per_page: 15) if params[:answer].present?
+    @questions =  Question.where(nil).paginate(:page => params[:page], per_page: 10)
+    @questions =  Question.where_answer(params[:answer]).paginate(:page => params[:page], per_page: 10) if params[:answer].present?
 
     @questions =  Question.where_operator(params[:operator]) if params[:operator].present?
 
@@ -48,7 +48,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+        format.html { redirect_to @question, notice: 'Question was updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
+      format.html { redirect_to questions_url, notice: 'Question was deleted.' }
       format.json { head :no_content }
     end
   end
